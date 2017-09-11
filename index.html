@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+  <title>Blockly Developer Tools</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <style>
+  </style>
+<script src="js/blockly_compressed.js"></script>
+<script src="js/blocks_compressed.js"></script>
+<script src="js/javascript_compressed.js"></script>
+<script src="js/zh-hant.js"></script>
+<script src="js/custom_1.js"></script>
+<!-- <script src="js/blocks.js"></script> -->
+</head>
+
+<body>
+<!-- 頁首 -->
+<!-- <nav class="navbar navbar-default navbar-fixed-top" role="navigation"> -->
+<nav class="navbar navbar-toggleable-md navbar-default fixed-top bg-inverse">  
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span> <span
+            class="icon-bar"></span> <span class="icon-bar"></span> <span
+            class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand">
+          SINEW WEB-MCU控制平台
+      </a>
+    </div>
+  </div>
+</nav>
+
+<div class="container"><div class="row">
+  <!-- Example row of columns -->
+  <div class="col-md-12">
+     <button  type='button' id='btn_next' class='btn btn-primary' onclick="showCode()">show javascript code</button>
+     <button  type='button' id='btn_next1' class='btn btn-primary' onclick="showResult()">show Result</button>
+  </div>
+  <div class="col-md-11"><div id="blocklyDiv" style="height: 768px; width: 1024px;"></div></div>
+  <div class="col-md-1"><div id="code">show code</div></div> <!-- show javascript code -->
+  <div class="col-md-1"><div id="result">show result</div></div> <!-- show javascript code -->
+  <div class="col-md-12"></div>
+  <!-- XML -->
+  <xml id="toolbox" style="display: none">
+   <!-- <category name="Input">
+      <block type="input_value">
+        <value name="TYPE">
+          <shadow type="type_null"></shadow>
+        </value>
+      </block>
+      <block type="input_statement">
+        <value name="TYPE">
+          <shadow type="type_null"></shadow>
+        </value>
+      </block>
+      <block type="input_dummy"></block>
+    </category> -->
+    <category name="Logic" colour="210">
+      <category name="If">
+        <block type="controls_if">
+          <mutation else="1"></mutation>
+        </block>
+        <block type="controls_if">
+          <mutation elseif="1" else="1"></mutation>
+        </block>
+      </category>
+      <category name="Boolean">
+        <block type="logic_compare"></block>
+        <block type="logic_operation"></block>
+        <block type="logic_negate"></block>
+        <block type="logic_boolean"></block>
+        <block type="logic_null"></block>
+        <block type="logic_ternary"></block>
+      </category>
+    </category>
+    <category name="Loops" colour="120">
+      <block type="controls_repeat_ext">
+        <value name="TIMES">
+          <block type="math_number">
+            <field name="NUM">10</field>
+          </block>
+        </value>
+      </block>
+      <block type="controls_whileUntil"></block>
+      <block type="controls_for">
+        <field name="VAR">i</field>
+        <value name="FROM">
+          <block type="math_number">
+            <field name="NUM">1</field>
+          </block>
+        </value>
+        <value name="TO">
+          <block type="math_number">
+            <field name="NUM">10</field>
+          </block>
+        </value>
+        <value name="BY">
+          <block type="math_number">
+            <field name="NUM">1</field>
+          </block>
+        </value>
+      </block>
+      <block type="controls_forEach"></block>
+      <block type="controls_flow_statements"></block>
+    </category>
+    <category name="Math" colour="230">
+      <block type="math_number"></block>
+      <block type="math_arithmetic"></block>
+      <block type="math_single"></block>
+      <block type="math_trig"></block>
+      <block type="math_constant"></block>
+      <block type="math_number_property"></block>
+      <block type="math_round"></block>
+      <block type="math_on_list"></block>
+      <block type="math_modulo"></block>
+      <block type="math_constrain">
+        <value name="LOW">
+          <block type="math_number">
+            <field name="NUM">1</field>
+          </block>
+        </value>
+        <value name="HIGH">
+          <block type="math_number">
+            <field name="NUM">100</field>
+          </block>
+        </value>
+      </block>
+      <block type="math_random_int">
+        <value name="FROM">
+          <block type="math_number">
+            <field name="NUM">1</field>
+          </block>
+        </value>
+        <value name="TO">
+          <block type="math_number">
+            <field name="NUM">100</field>
+          </block>
+        </value>
+      </block>
+      <block type="math_random_float"></block>
+    </category>
+    <category name="Text" colour="160">
+      <block type="text"></block>
+      <block type="text_length"></block>
+      <block type="text_print"></block>
+    </category>
+    <category name="Lists" colour="270">
+      <block type="lists_create_empty"></block>
+      <block type="lists_create_with"></block>
+      <block type="lists_repeat">
+        <value name="NUM">
+          <block type="math_number">
+            <field name="NUM">5</field>
+          </block>
+        </value>
+      </block>
+      <block type="lists_length"></block>
+      <block type="lists_isEmpty"></block>
+      <block type="lists_indexOf"></block>
+      <block type="lists_getIndex"></block>
+      <block type="lists_setIndex"></block>
+    </category>
+    <category name="Variables" colour="330" custom="VARIABLE"></category>
+    <category name="Functions" colour="290" custom="PROCEDURE"></category>
+    <sep></sep>
+    <category name="Library" expanded="true">
+      <category name="Spider Weather">
+        <block type="my_math_change"></block>
+        <block type="text"></block>
+      </category>
+    </category>
+    <!-- <category name="Colours" custom="COLOUR_PALETTE"></category> -->
+  </xml>
+</div></div>
+
+<script src="js/jquery.js"></script>
+<script src="js/javascript.js"></script>
+<!-- <script src="js/custom.js"></script> -->
+<script src="js/bootstrap.min.js"></script>         <!-- bootstrap套件 -->
+<script>
+/*
+Block 轉換不同語言
+Blockly.JavaScript.workspaceToCode()
+Blockly.Python.workspaceToCode()
+Blockly.Dart.workspaceToCode()
+*/
+  var blocklyArea = document.getElementById('blocklyArea');
+  var blocklyDiv = document.getElementById('blocklyDiv');
+  var workspace = Blockly.inject(blocklyDiv,
+      {
+        toolbox: document.getElementById('toolbox'),
+        grid:{
+          spacing: 20,
+          length: 3,
+          colour: '#ccc',
+          snap: true,
+        },  //格子
+        trashcan: true,  //顯示垃圾筒
+        scrollbars: false,  //是否顯示捲軸
+       /* zoom: {
+          controls: true,
+          wheel: true,
+          startScale: 1.0,
+          maxScale: 3,
+          minScale: 0.3,
+          scaleSpeed: 1.2
+        },
+        trashcan: true,
+        rtl: false, */
+      });
+  var onresize = function(e) {
+    // Compute the absolute coordinates and dimensions of blocklyArea.
+    var element = blocklyArea;
+    var x = 0;
+    var y = 0;
+    do {
+      x += element.offsetLeft;
+      y += element.offsetTop;
+      element = element.offsetParent;
+    } while (element);
+    // Position blocklyDiv over blocklyArea.
+    blocklyDiv.style.left = x + 'px';
+    blocklyDiv.style.top = y + 'px';
+    blocklyDiv.style.width = blocklyArea.offsetWidth + 'px';
+    blocklyDiv.style.height = blocklyArea.offsetHeight + 'px';
+  };
+  window.addEventListener('resize', onresize, false);
+  onresize();
+  Blockly.svgResize(workspace);
+ /* var xml = Blockly.Xml.workspaceToDom(workspace);
+  var xml_text = Blockly.Xml.domToText(xml); */
+</script>
+</body>
+</html>
