@@ -14,6 +14,7 @@
 <script src="js/zh-hant.js"></script>
 <script src="js/custom_1.js"></script>
 <script src="js/custom_2.js"></script>
+<script src="js/javascript.js"></script>
 <!-- <script src="js/blocks.js"></script> -->
 </head>
 
@@ -170,9 +171,9 @@
     <sep></sep>
     <category name="Library" expanded="true">
       <category name="Spider Weather">
-        <block type="my_setime_change"></block>
         <block type="my_math_change"></block>
         <block type="text"></block>
+        <block type="my_result_change"></block>
       </category>
     </category>
     <!-- <category name="Colours" custom="COLOUR_PALETTE"></category> -->
@@ -180,7 +181,6 @@
 </div></div>
 
 <script src="js/jquery.js"></script>
-<script src="js/javascript.js"></script>
 <!-- <script src="js/custom.js"></script> -->
 <script src="js/bootstrap.min.js"></script>         <!-- bootstrap套件 -->
 <script>
@@ -190,6 +190,7 @@ Blockly.JavaScript.workspaceToCode()
 Blockly.Python.workspaceToCode()
 Blockly.Dart.workspaceToCode()
 */
+  window.onload = loadBlocklyXML;
   var blocklyArea = document.getElementById('blocklyArea');
   var blocklyDiv = document.getElementById('blocklyDiv');
   var workspace = Blockly.inject(blocklyDiv,
@@ -203,7 +204,7 @@ Blockly.Dart.workspaceToCode()
         },  //格子
         trashcan: true,  //顯示垃圾筒
         scrollbars: false,  //是否顯示捲軸
-       /* zoom: {
+        zoom: {
           controls: true,
           wheel: true,
           startScale: 1.0,
@@ -212,7 +213,8 @@ Blockly.Dart.workspaceToCode()
           scaleSpeed: 1.2
         },
         trashcan: true,
-        rtl: false, */
+        rtl: false,
+        scrollbars: true
       });
   var onresize = function(e) {
     // Compute the absolute coordinates and dimensions of blocklyArea.

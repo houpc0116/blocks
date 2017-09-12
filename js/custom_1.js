@@ -16,8 +16,8 @@ Blockly.Blocks['my_math_change'] = {
   init: function() {
     this.jsonInit(myMathChangeBlock);
     this.setPreviousStatement(true);     //判斷上接頭是否可以連接
-    this.setNextStatement(true);         //判斷下接頭是否可以連接
-    this.setOutput(true, 'String');      //變成Data Block，從右邊插入其他Block
+    //this.setNextStatement(true);         //判斷下接頭是否可以連接
+    //this.setOutput(true, 'String');      //變成Data Block，從右邊插入其他Block
     // Assign 'this' to a variable for use in the tooltip closure below.
   }
 };
@@ -28,7 +28,7 @@ Blockly.JavaScript['my_math_change'] = function(block) {
  var delta = Blockly.JavaScript.valueToCode(block, 'DELTA1', Blockly.JavaScript.ORDER_ADDITION);
  //設定變數
  var name = Blockly.JavaScript.variableDB_.getName(block.getFieldValue('VAR1'), Blockly.Variables.NAME_TYPE);
- return name+"="+delta;
+ return name+"="+delta+";";
  /* return name+'=' + '(typeof ' + name + ' == \'number\' ? '
  + name + ' : 0) + ' + delta + ';\n'; */
 };
